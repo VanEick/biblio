@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="biblio"/>
+  <table-filter match-name="panier"/>
+  <table-filter match-name="criteres"/>
+  <table-filter match-name="avis"/>
+  <table-filter match-name="ligne_commande"/>
+  <table-filter match-name="categorie"/>
+  <table-filter match-name="commentaires"/>
+  <table-filter match-name="notations"/>
+  <table-filter match-name="produits"/>
+  <table-filter match-name="personnes"/>
+</hibernate-reverse-engineering>

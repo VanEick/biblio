@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 janv. 2013 14:47:53 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Personnes" table="personnes" catalog="biblio">
+        <id name="idPersonne" type="java.lang.Integer">
+            <column name="id_personne" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="panier" class="entity.Panier" fetch="select">
+            <column name="id_panier" />
+        </many-to-one>
+        <property name="nom" type="string">
+            <column name="nom" length="50" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="prenom" length="50" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="adresse" length="250" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="login" type="string">
+            <column name="login" length="50" />
+        </property>
+        <property name="mdp" type="string">
+            <column name="mdp" length="50" />
+        </property>
+        <property name="profil" type="string">
+            <column name="profil" length="50" />
+        </property>
+        <set name="paniers" inverse="true">
+            <key>
+                <column name="id_personne" />
+            </key>
+            <one-to-many class="entity.Panier" />
+        </set>
+    </class>
+</hibernate-mapping>

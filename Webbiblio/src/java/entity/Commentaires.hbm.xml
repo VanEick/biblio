@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 janv. 2013 14:47:53 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Commentaires" table="commentaires" catalog="biblio">
+        <id name="idCommentaire" type="java.lang.Integer">
+            <column name="id_commentaire" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="produits" class="entity.Produits" fetch="select">
+            <column name="id_produit" not-null="true" />
+        </many-to-one>
+        <property name="commentaire" type="string">
+            <column name="commentaire" length="500" />
+        </property>
+        <property name="etat" type="string">
+            <column name="etat" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
