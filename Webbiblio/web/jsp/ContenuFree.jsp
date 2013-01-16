@@ -21,62 +21,49 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
 
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gratuits</title>
+    </head>
+    <body>
+        <h1>Gratuits</h1>
         
         <%!   
-        Session session = null;
-        private String lsPrix, lstSql;
-        String lsMessage = "";
-        ResultSet  lrs = null;
-
-        private String genererSelect(HttpServletRequest rq, String tb ){
-        String lsSel= "SELECT * FROM "+ tb +" WHERE ";
-        Enumeration attributsUrl = rq.getParameterNames();
-        while(attributsUrl.hasMoreElements()) {
-            String lsNomAttribut = (String)attributsUrl.nextElement();
-            String lsValeurAttribut = rq.getParameter(lsNomAttribut);
-            lsSel+=lsNomAttribut +"='"+lsValeurAttribut+"' AND ";
-            }
-        if(lsSel.endsWith("AND ")) lsSel=lsSel.substring(0, lsSel.length()-4);
-        return lsSel;
-    } 
 
         %>
         
         <%   
-        // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
-        this.session = HibernateSession.getSessionFactory().openSession();
-        
-        Connexion cnx = new Connexion();
-        String r = cnx.seConnecter("biblio", "root", "");
-        //Connection cn = cnx.getConnexion();
-        //Connection cn = (Connection)session.getAttribute("connexion");
-        
-        
-               
-        // --- Déclarations
-        Statement  lstSql      = null;
-        ResultSet  lrs         = null;
-        StringBuilder lsbContenu = new StringBuilder("");
-        //lstSql = cn.createStatement();
-        lsMessage += genererSelect(request,"prix");
-        lrs = lstSql.executeQuery(lsMessage);
+        try {
+            // --- Connexion
+            Class.forName("org.gjt.mm.mysql.Driver");
+            Connection lcConnexion = DriverManager.getConnection("jdbc:mysql://localhost/biblio","root","");
 
-        while(lrs.next()) {
-            lsMessage=lsPrix=lrs.getString(1);
-           }
-        out.print(lsMessage);
+            // --- SELECT
+            Statement lstSql = lcConnexion.createStatement();
+            ResultSet lrs    = lstSql.executeQuery("SELECT nom_produit, prix FROM produits WHERE prix = 0");
+            StringBuilder lsbResultat = new StringBuilder("");
+
+            while(lrs.next()) {
+
+                lsbResultat.append(lrs.getString(1));
+                lsbResultat.append(" - ");
+                lsbResultat.append(" </a> ");
+                       
+            }
+            out.println(lsbResultat.toString());
+            // --- Deconnexion
+            lrs.close();
+            lcConnexion.close();
+        }
+
+        catch(Exception e) { out.println(e.getMessage()); }
+        
         %>
-    </head>
-    <body>
-        <h1>Gratuits</h1>
+        
     </body>
 </html>
