@@ -12,7 +12,7 @@
         <title>Paiement en ligne</title>
     </head>
     <body>
-        <h3>Cliquer sur le bouton Paiement et suiver les instructions CB</h3>
+        <h6>Cliquer sur le bouton Paiement et suiver les instructions CB</h6>
           
       <!--<form method="post" name="CMCICFormulaire" target="_top" action="https://paiement.creditmutuel.fr/test/paiement.cgi">-->
       <!--<form method="post" name="CMCICFormulaire" target="_top" action="https://paiement.creditmutuel.fr/test/capture_paiement.cgi">-->

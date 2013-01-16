@@ -1,0 +1,21 @@
+/* 
+    Document   : biblio
+    Created on : 16 janv. 2013, 13:56:27
+    Author     : stagiaire
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+#entete{
+    background-image: url(../images/espace1.png); background-repeat:repeat-x;
+}
+
+    /* ======= Le contenu ====== */
+#contenu
+{
+	height:600px;
+	background-color:lightgrey;
+        
+}
+}
