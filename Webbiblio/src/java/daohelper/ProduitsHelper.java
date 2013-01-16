@@ -34,6 +34,21 @@ public class ProduitsHelper {
         }
         return produitsListe;
     } /// getDepartements
+    
+    // ------------------
+    public List getFicheProduit(int np)
+    // ------------------
+    {
+        List<Produits> produitsListe = null;
+        try {
+           Query q = session.createQuery("FROM Produits WHERE id_produit="+np+" ORDER BY nom_produit");
+           produitsListe = (List<Produits>)q.list();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return produitsListe;
+    } /// getDepartements
 
    
    // ------------------------
