@@ -1,16 +1,24 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        public class Calendrier3 {
+<%-- 
+    Document   : newjsp
+    Created on : 15 janv. 2013, 17:15:28
+    Author     : stagiaire
+--%>
+import java.util.HashMap;
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>
+            public class Calendrier3 {
     
     public static void main(String[] args) {
         
-      HashMap<String,Integer> hmMois = new HashMap();
+      HashMap<String Integer> hmMois = new HashMap();
       
       hmMois.put("Janvier", 31);
       hmMois.put("Février", 28);
@@ -53,6 +61,6 @@
       } // Fin I
     }    
 }
-    </h:body>
+        </h1>
+    </body>
 </html>
-
