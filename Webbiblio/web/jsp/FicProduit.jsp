@@ -28,10 +28,7 @@
     out.print("<table border='1'>");
     for(Object enr : listV) {
         Produits pdt = (Produits)enr;
-       // Object[] tCol = {pdt.getIdProduit(), pdt.getNomProduit()};
-        //out.print("<tr><td>"+tCol[0].toString()+"</td><td>"+tCol[1].toString()+"</td><td></tr>\n");
-      //  out.print("<tr><td>"+pdt.getIdProduit()+"</td><td>"+pdt.getNomProduit()+"</td><td></tr>\n");
-        out.print("<tr><td>"+pdt.getIdProduit()+"</td><td><a href='#' onclick='voirPdt("+pdt.getIdProduit()+")' >"+pdt.getNomProduit()+"</a></td><td></tr>\n");
+        out.print("<tr><td>"+pdt.getIdProduit()+"</td><td>"+pdt.getNomProduit()+"</td><td></tr>\n");
         }
     out.print("</table><br/>");
 
