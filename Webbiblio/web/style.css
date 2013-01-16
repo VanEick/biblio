@@ -1,3 +1,8 @@
+body,.h:body, .h:body h2,  .h:body h3{
+    background-color: #CECECE;
+    color: #370028;
+}
+
 div {
   width: 200px;
 }
