@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 janv. 2013 14:47:53 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Panier" table="panier" catalog="biblio">
+        <id name="idPanier" type="java.lang.Integer">
+            <column name="id_panier" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="personnes" class="entity.Personnes" fetch="select">
+            <column name="id_personne" />
+        </many-to-one>
+        <property name="prixCmd" type="java.lang.Float">
+            <column name="prix_cmd" precision="12" scale="0" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" />
+        </property>
+        <set name="personneses" inverse="true">
+            <key>
+                <column name="id_panier" />
+            </key>
+            <one-to-many class="entity.Personnes" />
+        </set>
+        <set name="ligneCommandes" inverse="true">
+            <key>
+                <column name="id_panier" not-null="true" />
+            </key>
+            <one-to-many class="entity.LigneCommande" />
+        </set>
+    </class>
+</hibernate-mapping>

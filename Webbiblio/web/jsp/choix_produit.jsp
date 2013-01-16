@@ -29,15 +29,14 @@
         </script>
     </head>
     <body>
-        <h3>Visualisaion du fichier</h3>
-        
-        <form name="bib" action="commentaire.jsp" method="post">
-            <input type="hidden" name="id_produit" value="2" />
-            <%
-                try {
-                    // --- Connexion
-                    Class.forName("org.gjt.mm.mysql.Driver");
-                    Connection lcConnexion = DriverManager.getConnection("jdbc:mysql://localhost/biblio", "root", "");
+        <h1>Visualisaion du fichier</h1>
+           <form name="bib" action="commentaire.jsp" method="post">
+               <input type="hidden" name="id_produit" value="0" />
+        <%
+        try {
+            // --- Connexion
+            Class.forName("org.gjt.mm.mysql.Driver");
+            Connection lcConnexion = DriverManager.getConnection("jdbc:mysql://localhost/biblio","root","");
 
                     // --- SELECT
                     Statement lstSql = lcConnexion.createStatement();

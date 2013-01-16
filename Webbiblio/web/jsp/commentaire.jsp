@@ -37,8 +37,8 @@
         <%
             //       int pdt_id = Integer.parseInt(request.getAttribute("id_produit").toString());
 
-            int pdt_id = Integer.parseInt(request.getParameter("id_produit").toString());
-
+                
+            
             try {
                 // --- Connexion
                 Class.forName("org.gjt.mm.mysql.Driver");
