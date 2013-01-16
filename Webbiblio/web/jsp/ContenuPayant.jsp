@@ -37,7 +37,10 @@
 
                 lsbResultat.append(lrs.getString(1));
                 lsbResultat.append(" - ");
-                lsbResultat.append(" </a> ");
+                lsbResultat.append(lrs.getString(2));
+                lsbResultat.append(" €");
+                lsbResultat.append("</br>");
+                lsbResultat.append("</a>");
                        
             }
             out.println(lsbResultat.toString());
