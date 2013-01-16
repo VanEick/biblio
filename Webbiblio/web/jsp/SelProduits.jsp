@@ -25,8 +25,8 @@
      //out.print("taille : "+listV.size());
      
     out.print("<table border='1'>");
-    for(Object enr : listV) {
-        Produits pdt = (Produits)enr;
+    for(Object enr1 : listV) {
+        Produits pdt = (Produits)enr1;
        // Object[] tCol = {pdt.getIdProduit(), pdt.getNomProduit()};
         //out.print("<tr><td>"+tCol[0].toString()+"</td><td>"+tCol[1].toString()+"</td><td></tr>\n");
         out.print("<tr><td>"+pdt.getIdProduit()+"</td><td>"+pdt.getNomProduit()+"</td><td></tr>\n");
