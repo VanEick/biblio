@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 janv. 2013 14:47:53 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.LigneCommande" table="ligne_commande" catalog="biblio">
+        <composite-id name="id" class="entity.LigneCommandeId">
+            <key-property name="idPanier" type="int">
+                <column name="id_panier" />
+            </key-property>
+            <key-property name="idProduit" type="int">
+                <column name="id_produit" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="panier" class="entity.Panier" update="false" insert="false" fetch="select">
+            <column name="id_panier" not-null="true" />
+        </many-to-one>
+        <many-to-one name="produits" class="entity.Produits" update="false" insert="false" fetch="select">
+            <column name="id_produit" not-null="true" />
+        </many-to-one>
+        <property name="totalCmd" type="java.lang.Double">
+            <column name="total_cmd" precision="22" scale="0" />
+        </property>
+        <property name="quantite" type="java.lang.Integer">
+            <column name="quantite" />
+        </property>
+    </class>
+</hibernate-mapping>

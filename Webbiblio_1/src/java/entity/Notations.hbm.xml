@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 janv. 2013 14:47:53 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Notations" table="notations" catalog="biblio">
+        <id name="idNotation" type="java.lang.Integer">
+            <column name="id_notation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="produits" class="entity.Produits" fetch="select">
+            <column name="id_produit" not-null="true" />
+        </many-to-one>
+        <property name="critere" type="java.lang.Integer">
+            <column name="critere" />
+        </property>
+        <property name="note" type="java.lang.Integer">
+            <column name="note" />
+        </property>
+        <set name="critereses" inverse="false" table="avis">
+            <key>
+                <column name="id_notation" not-null="true" />
+            </key>
+            <many-to-many entity-name="entity.Criteres">
+                <column name="id_critere" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

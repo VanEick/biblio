@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 janv. 2013 14:47:53 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Categorie" table="categorie" catalog="biblio">
+        <id name="idCat" type="java.lang.Integer">
+            <column name="id_cat" />
+            <generator class="identity" />
+        </id>
+        <property name="nomCat" type="string">
+            <column name="nom_cat" length="50" />
+        </property>
+        <set name="produitses" inverse="true">
+            <key>
+                <column name="id_cat" />
+            </key>
+            <one-to-many class="entity.Produits" />
+        </set>
+    </class>
+</hibernate-mapping>
