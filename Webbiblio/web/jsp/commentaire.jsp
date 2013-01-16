@@ -19,64 +19,65 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h3>Visualisation du fichier</h3>
-
-        <h4>Selecion du fichier</h4>
+        <h3>Fiche Produit</h3>
         <!-- <form action="AuteursInsertConfirmation.jsp" method="post">
              <label class="id_fichier">Id </label>
              <input type="text" name="id_fichier" value="2" />
              <input type="submit" />
          </form> -->
+      
 
-    
+        <%
+            HttpSession sess = request.getSession();
+            sess.getAttribute("pdt_id");
+        %>
 
 
-        <% out.print(request.getAttribute("id_produit") ); %>
         <!--form action="commentaire_maj.jsp" method="post"-->
-            <%
-     //       int pdt_id = Integer.parseInt(request.getAttribute("id_produit").toString());
+        <%
+            //       int pdt_id = Integer.parseInt(request.getAttribute("id_produit").toString());
 
-                int pdt_id=2;
-            
+            int pdt_id = Integer.parseInt(request.getParameter("id_produit").toString());
+
             try {
-                    // --- Connexion
-                    Class.forName("org.gjt.mm.mysql.Driver");
-                    Connection lcConnexion = DriverManager.getConnection("jdbc:mysql://localhost/biblio", "root", "");
+                // --- Connexion
+                Class.forName("org.gjt.mm.mysql.Driver");
+                Connection lcConnexion = DriverManager.getConnection("jdbc:mysql://localhost/biblio", "root", "");
 
-                    // --- SELECT
-                    Statement lstSql = lcConnexion.createStatement();
-                    ResultSet lrs = lstSql.executeQuery("SELECT * FROM produits WHERE id_produit="+pdt_id+" ");
-                    StringBuilder lsbResultat = new StringBuilder("");
+                // --- SELECT
+                Statement lstSql = lcConnexion.createStatement();
+                ResultSet lrs = lstSql.executeQuery("SELECT * FROM produits WHERE id_produit=" + pdt_id + "");
+                StringBuilder lsbResultat = new StringBuilder("");
 
-                    while (lrs.next()) {
+                while (lrs.next()) {
 
-                        lsbResultat.append("id produits : ");
-                        lsbResultat.append(lrs.getString(1));
-                        lsbResultat.append("<br/>");
-                        lsbResultat.append("titre : ");
-                        lsbResultat.append(lrs.getString(2));
-                        lsbResultat.append("<br/>");
-                        lsbResultat.append("auteur : ");
-                        lsbResultat.append(lrs.getString(4));
-                        lsbResultat.append("<br/>");
-                        lsbResultat.append("descripion : ");
-                        lsbResultat.append(lrs.getString(6));
-                        lsbResultat.append("<br/>");
-                        lsbResultat.append("<br/>");
+                    lsbResultat.append("id produits : ");
+                    lsbResultat.append(lrs.getString(1));
+                    lsbResultat.append("<br/>");
+                    lsbResultat.append("titre : ");
+                    lsbResultat.append(lrs.getString(2));
+                    lsbResultat.append("<br/>");
+                    lsbResultat.append("auteur : ");
+                    lsbResultat.append(lrs.getString(4));
+                    lsbResultat.append("<br/>");
+                    lsbResultat.append("descripion : ");
+                    lsbResultat.append(lrs.getString(6));
+                    lsbResultat.append("<br/>");
+                    lsbResultat.append("<br/>");
 
 
-                    }
-                    out.println(lsbResultat.toString());
-                    // --- Deconnexion
-                    lrs.close();
-                    lcConnexion.close();
-                } catch (Exception e) {
-                    out.println(e.getMessage());
                 }
-            %>
+                out.println(lsbResultat.toString());
+                // --- Deconnexion
+                lrs.close();
+                lcConnexion.close();
+            } catch (Exception e) {
+                out.println(e.getMessage());
+            }
+        %>
         <!--/form-->
 
-        <form action="produit.jsp" method="post">
+        <form action="choix_produit.jsp" method="post">
             <%
                 try {
                     // --- Connexion
@@ -85,16 +86,16 @@
 
                     // --- SELECT
                     Statement lstSql = lcConnexion.createStatement();
-                    ResultSet lrs = lstSql.executeQuery("SELECT * FROM commentaires WHERE id_produit=2 AND etat='valide'");
+                    ResultSet lrs = lstSql.executeQuery("SELECT * FROM commentaires WHERE id_produit=" + pdt_id + " AND etat='valide'");
                     StringBuilder lsbResultat = new StringBuilder("");
 
                     while (lrs.next()) {
 
-                        lsbResultat.append("Commentaires valiés :  ");
+                        lsbResultat.append(lrs.getString(1));
+                        lsbResultat.append(" - ");
                         lsbResultat.append(lrs.getString(2));
                         lsbResultat.append("<br/>");
-                        lsbResultat.append(lrs.getString(3));
-                        lsbResultat.append("<br/>");
+                       
 
 
 
@@ -108,6 +109,7 @@
                 }
             %>
         </form>
+        </br>          <a href="choix_produit.jsp">retour aux produits</a>
 
     </body>
 </html>
