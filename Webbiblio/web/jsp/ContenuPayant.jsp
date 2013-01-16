@@ -23,9 +23,9 @@
         document.bib.id_produit.value=num;
         document.bib.submit();
         }
- 
         </script>
-                   <form name="bib" action="commentaire.jsp" method="post">
+        
+               <form name="bib" action="commentaire.jsp" method="post">
                <input type="hidden" name="id_produit" value="0" />
                
         <%!   
