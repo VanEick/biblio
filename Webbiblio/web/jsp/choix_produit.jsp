@@ -14,13 +14,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-    <script>
-        function choixPdt(num){
-        document.bib.id_produit.value=num;
-        document.bib.submit();
-        }
+
+        <%
+            HttpSession sess = request.getSession(true);
+            sess.setAttribute("pdt_id", "choixPdt(num)");
+        %>
+
+        <script>
+            function choixPdt(num){
+                document.bib.id_produit.value=num;
+                document.bib.submit();
+            }
         
-    </script>
+        </script>
     </head>
     <body>
         <h1>Visualisaion du fichier</h1>
@@ -32,30 +38,30 @@
             Class.forName("org.gjt.mm.mysql.Driver");
             Connection lcConnexion = DriverManager.getConnection("jdbc:mysql://localhost/biblio","root","");
 
-            // --- SELECT
-            Statement lstSql = lcConnexion.createStatement();
-            ResultSet lrs    = lstSql.executeQuery("SELECT id_produit, nom_produit FROM produits");
-            StringBuilder lsbResultat = new StringBuilder("");
-            
-            
-            
-            while(lrs.next()) {
-                lsbResultat.append("<a href='#' onclick='choixPdt("+Integer.toString(lrs.getInt(1))+")'>");
-                lsbResultat.append(Integer.toString(lrs.getInt(1)));
-                lsbResultat.append("-");
-                lsbResultat.append(lrs.getString(2));
-                lsbResultat.append("-");
-                lsbResultat.append("</a>");
-                       
-            }
-            out.println(lsbResultat.toString());
-            // --- Deconnexion
-            lrs.close();
-            lcConnexion.close();
-        }
+                    // --- SELECT
+                    Statement lstSql = lcConnexion.createStatement();
+                    ResultSet lrs = lstSql.executeQuery("SELECT id_produit, nom_produit FROM produits");
+                    StringBuilder lsbResultat = new StringBuilder("");
 
-        catch(Exception e) { out.println(e.getMessage()); }
-    %>
-           </form>
+
+
+                    while (lrs.next()) {
+                        lsbResultat.append("<a href='#' onclick='choixPdt(" + Integer.toString(lrs.getInt(1)) + ")'>");
+                        lsbResultat.append(Integer.toString(lrs.getInt(1)));
+                        lsbResultat.append("-");
+                        lsbResultat.append(lrs.getString(2));
+                        lsbResultat.append("</a>");
+                        lsbResultat.append("<br/>");
+
+                    }
+                    out.println(lsbResultat.toString());
+                    // --- Deconnexion
+                    lrs.close();
+                    lcConnexion.close();
+                } catch (Exception e) {
+                    out.println(e.getMessage());
+                }
+            %>
+        </form>
     </body>
 </html>
