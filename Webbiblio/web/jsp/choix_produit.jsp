@@ -25,7 +25,7 @@
     <body>
         <h1>Visualisaion du fichier</h1>
            <form name="bib" action="commentaire.jsp" method="post">
-               <input type="hidden" name="id_produit" value="2" />
+               <input type="hidden" name="id_produit" value="0" />
         <%
         try {
             // --- Connexion

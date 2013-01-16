@@ -31,12 +31,14 @@
     
 
 
-        <% out.print(request.getAttribute("id_produit") ); %>
+        <%
+        int id_pdt = Integer.parseInt(request.getParameter("id_produit").toString()); 
+        %>
         <!--form action="commentaire_maj.jsp" method="post"-->
             <%
      //       int pdt_id = Integer.parseInt(request.getAttribute("id_produit").toString());
 
-                int pdt_id=2;
+                
             
             try {
                     // --- Connexion
@@ -45,7 +47,7 @@
 
                     // --- SELECT
                     Statement lstSql = lcConnexion.createStatement();
-                    ResultSet lrs = lstSql.executeQuery("SELECT * FROM produits WHERE id_produit="+pdt_id+" ");
+                    ResultSet lrs = lstSql.executeQuery("SELECT * FROM produits WHERE id_produit="+id_pdt+" ");
                     StringBuilder lsbResultat = new StringBuilder("");
 
                     while (lrs.next()) {
@@ -85,7 +87,7 @@
 
                     // --- SELECT
                     Statement lstSql = lcConnexion.createStatement();
-                    ResultSet lrs = lstSql.executeQuery("SELECT * FROM commentaires WHERE id_produit=2 AND etat='valide'");
+                    ResultSet lrs = lstSql.executeQuery("SELECT * FROM commentaires WHERE id_produit="+id_pdt+" AND etat='valide'");
                     StringBuilder lsbResultat = new StringBuilder("");
 
                     while (lrs.next()) {

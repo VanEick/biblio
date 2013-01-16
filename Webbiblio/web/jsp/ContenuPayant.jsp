@@ -18,6 +18,16 @@
     <body>
         <h1>Payants</h1>
         
+        <script>
+        function choixPdt(num){
+        document.bib.id_produit.value=num;
+        document.bib.submit();
+        }
+ 
+        </script>
+                   <form name="bib" action="commentaire.jsp" method="post">
+               <input type="hidden" name="id_produit" value="0" />
+               
         <%!   
 
         %>
@@ -30,19 +40,29 @@
 
             // --- SELECT
             Statement lstSql = lcConnexion.createStatement();
-            ResultSet lrs    = lstSql.executeQuery("SELECT nom_produit, prix FROM produits WHERE prix != 0");
+            ResultSet lrs    = lstSql.executeQuery("SELECT id_produit, nom_produit, prix FROM produits WHERE prix != 0");
             StringBuilder lsbResultat = new StringBuilder("");
 
+            lsbResultat.append("<table border='1' >");
             while(lrs.next()) {
 
-                lsbResultat.append(lrs.getString(1));
-                lsbResultat.append(" - ");
+                lsbResultat.append("<tr>");
+                lsbResultat.append("<td>");
+                lsbResultat.append(Integer.toString(lrs.getInt(1)));
+                lsbResultat.append("</td><td>");
+                lsbResultat.append("<a href='#' onclick='choixPdt("+Integer.toString(lrs.getInt(1))+")'>");
                 lsbResultat.append(lrs.getString(2));
-                lsbResultat.append(" €");
-                lsbResultat.append("</br>");
                 lsbResultat.append("</a>");
+                lsbResultat.append("</td><td>");
+                lsbResultat.append(lrs.getString(3));
+                lsbResultat.append(" €");
+                //lsbResultat.append("</br>");
+               // lsbResultat.append("</a>");
+                lsbResultat.append("</td>");
+                lsbResultat.append("</tr>");
                        
             }
+            lsbResultat.append("</table>");
             out.println(lsbResultat.toString());
             // --- Deconnexion
             lrs.close();
