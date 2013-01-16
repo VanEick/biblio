@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15 janv. 2013 14:47:53 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="entity.Produits" table="produits" catalog="biblio">
+        <id name="idProduit" type="java.lang.Integer">
+            <column name="id_produit" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categorie" class="entity.Categorie" fetch="select">
+            <column name="id_cat" />
+        </many-to-one>
+        <property name="nomProduit" type="string">
+            <column name="nom_produit" length="50" />
+        </property>
+        <property name="prix" type="java.lang.Float">
+            <column name="prix" precision="12" scale="0" />
+        </property>
+        <property name="auteur" type="string">
+            <column name="auteur" length="100" />
+        </property>
+        <property name="editeur" type="string">
+            <column name="editeur" length="100" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="50" />
+        </property>
+        <property name="nomFichier" type="string">
+            <column name="nom_fichier" length="250" />
+        </property>
+        <property name="format" type="string">
+            <column name="format" length="50" />
+        </property>
+        <set name="ligneCommandes" inverse="true">
+            <key>
+                <column name="id_produit" not-null="true" />
+            </key>
+            <one-to-many class="entity.LigneCommande" />
+        </set>
+        <set name="notationses" inverse="true">
+            <key>
+                <column name="id_produit" not-null="true" />
+            </key>
+            <one-to-many class="entity.Notations" />
+        </set>
+        <set name="commentaireses" inverse="true">
+            <key>
+                <column name="id_produit" not-null="true" />
+            </key>
+            <one-to-many class="entity.Commentaires" />
+        </set>
+    </class>
+</hibernate-mapping>
